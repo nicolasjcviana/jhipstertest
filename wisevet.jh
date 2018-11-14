@@ -1,0 +1,42 @@
+entity Veterinario {
+	nome String
+    numeroCrmv Integer
+}
+
+entity DonoAnimal {
+	nome String
+    
+}
+
+entity Endereco {
+	rua String
+	numero String
+	bairro String
+	cidade String
+}
+
+entity Vinculo {
+	isAceito Boolean
+}
+
+relationship ManyToOne {
+	Vinculo{veterinario} to Veterinario
+    Vinculo{donoAnimal} to DonoAnimal
+}
+
+relationship OneToOne {
+	DonoAnimal {endereco} to Endereco
+}
+
+
+// Set pagination options
+paginate Veterinario, DonoAnimal with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
